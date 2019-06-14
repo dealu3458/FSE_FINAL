@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jun 14 11:28:49 2019
-
 @author: dealu_si
 """
 
@@ -21,15 +20,18 @@ for i in range(times):
 
 #画图,利用line和nodes信息
 class Graph():
-    def __init__(self, nodeNum, sides): #这里可以用一下self了
-        self.nodeNum = nodeNum #顶点个数
-        self.amatrix = [[0]*(nodeNum+1) for i in range(nodeNum+1)]   #邻接矩阵表示方法
+    def __init__(self,nodeNum,sides,direction=False):
+        self.nodeNum = nodeNum #顶点
+        self.amatrix = [[0]*(nodeNum+1) for i in range(nodeNum+1)]   #邻接矩阵
         for side in sides:
             u,v,w = side
-            self.amatrix[u][v]=w
-            self.amatrix[v][u]=w
+            if(direction):
+                self.amatrix[u][v]=w
+            else:
+                self.amatrix[u][v]=w
+                self.amatrix[v][u]=w
 
-graph = Graph(nodes_num, line)
+graph = Graph(nodes_num, line, False)
 
 
 #下面利用上学期学过的还是大一下学过的dijkstra算法解决问题
